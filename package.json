@@ -1,0 +1,11 @@
+{
+  "name": "radarmatic",
+  "private": true,
+  "dependencies": {
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:jstn/radarmatic.git",
+  "author": "Justin Ouellette <justin.ouellette@gmail.com>",
+  "license": "MIT"
+}

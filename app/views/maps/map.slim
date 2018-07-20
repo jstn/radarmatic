@@ -1,0 +1,31 @@
+#radarmatic_ui
+  h1 🌈 Radarmatic II &lt;β.6&gt;
+  div#radar_name Loading&hellip;
+  div#radar_time 0000-00-00 00:00:00
+  div
+    label for="lock_checkbox"
+      input#lock_checkbox type="checkbox"
+      | Lock
+  div
+    / | Opacity
+    input#opacity_slider type="range" min="0" max="1" value="1" step="any"
+  div
+    / | Palette
+    input#color_slider type="range" min="0" max="1" value="1" step="any"
+  / div
+  /   | Time
+  /   input#time_slider type="range" min="0" max="1" value="1" step="any"
+  / div
+  /   | Speed
+  /   input#time_slider type="range" min="0" max="1" value="1" step="any"
+  / div
+  /   input#animation_toggle type="button" value="Play"
+
+#radarmatic_map
+
+script#radarmatic_sites type="text/javascript"
+  = "var RadarmaticSites = #{@radar_sites_json}".html_safe
+script#vertex_shader type="x-shader/x-vertex"
+  | void main() { gl_Position = vec4(position, 1.); }
+script#fragment_shader type="x-shader/x-fragment"
+  = render partial: "shader.frag"
