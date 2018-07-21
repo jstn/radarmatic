@@ -1,8 +1,11 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  before_action :skip_session
   after_action :allow_iframe
 
   private
+    def skip_session
+      request.session_options[:skip] = true
+    end
 
     def allow_iframe
       response.headers.except! "X-Frame-Options"

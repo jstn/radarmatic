@@ -14,7 +14,7 @@ class MapsController < ApplicationController
       JSON.generate(sites)
     end
 
-    expires_in 1.day, must_revalidate: true
+    expires_in 1.day, must_revalidate: true, public: true
 
     render layout: "map"
   end

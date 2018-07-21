@@ -1,17 +1,16 @@
 source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
-end
+ruby "2.4.4"
 
 gem "rails", "~> 5.2.0"
+gem "sassc-rails", "~> 1.3.0"
 gem "uglifier", ">= 1.3.0"
 gem "sqlite3", ">= 1.3.13"
 gem "puma", "~> 3.7"
 gem "slim", "~> 3.0.8"
 gem "rbzip2", "~> 0.3.0"
-gem "bootsnap", "~> 1.3.1"
+gem "bootsnap", ">= 1.1.0", require: false
 gem "tzinfo-data"
 
 group :development do
