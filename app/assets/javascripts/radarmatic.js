@@ -3,6 +3,11 @@ class Radarmatic {
     $(document).on("ready", this.get_ready_to_rumble.bind(this));
   }
 
+  storage_or_default(key, def) {
+    const item = window.localStorage.getItem(key);
+    return item ? item : def;
+  }
+
   get_ready_to_rumble() {
     if ($("#radarmatic_map").length < 1) { return; }
 
@@ -10,7 +15,7 @@ class Radarmatic {
     this.time = (new Date).getTime();
     this.product_nexrad = "N0Q";
     this.product_tdwr = "TZL";
-    this.current_site = "KTLH";
+    this.current_site = this.storage_or_default("current_site", "KDIX");
     this.create_sites();
     this.create_map();
     this.create_gl();
@@ -116,6 +121,7 @@ class Radarmatic {
 
     if (nearest !== this.image.message_header.call_sign) {
       this.current_site = nearest;
+      window.localStorage.setItem("current_site", nearest);
       this.get_image(nearest);
     }
   }
