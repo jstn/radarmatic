@@ -1,7 +1,7 @@
 class RadarImagesController < ApplicationController
   def product
-    @radar_site = RadarSite.find_by_call_sign(params[:site])
-    @radar_product = RadarProduct.find_by_awips_header(params[:product])
+    @radar_site = RadarSite.find_by_call_sign(radar_params[:site])
+    @radar_product = RadarProduct.find_by_awips_header(radar_params[:product])
 
     unless @radar_site.present? && @radar_product.present?
       head 404
@@ -33,4 +33,13 @@ class RadarImagesController < ApplicationController
       end
     end
   end
+
+  private
+
+    def radar_params
+      params.permit(
+        :site,
+        :product
+      )
+    end
 end
