@@ -5,7 +5,7 @@ constraints = {
 }
 
 Rails.application.routes.draw do
-  get  ":site/:product/:range",  to: "radar_images#range",    as: "radar_range",    constraints: constraints
-  get  ":site/:product",         to: "radar_images#product",  as: "radar_product",  constraints: constraints
+  get  ":site/:product/:range",  to: "radar_images#range",  as: "radar_range",  constraints: constraints
+  get  ":site/:product",         to: "radar_images#image",  as: "radar_image",  constraints: constraints
   root                           to: "maps#map"
 end

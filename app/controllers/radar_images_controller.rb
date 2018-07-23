@@ -1,5 +1,5 @@
 class RadarImagesController < ApplicationController
-  def product
+  def image
     @radar_site = RadarSite.find_by_call_sign(radar_params[:site])
     @radar_product = RadarProduct.find_by_awips_header(radar_params[:product])
 
@@ -34,10 +34,15 @@ class RadarImagesController < ApplicationController
     end
   end
 
+  def range
+    raise "stub"
+  end
+
   private
 
     def radar_params
       params.permit(
+        :format,
         :site,
         :product
       )
