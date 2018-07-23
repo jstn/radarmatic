@@ -39,7 +39,7 @@ class Radarmatic {
   create_map() {
     this.map = new L.Map("radarmatic_map", {
       center: this.sites[this.current_site].loc,
-      zoom: 8
+      zoom: 7
     });
 
     this.map_layers = {
