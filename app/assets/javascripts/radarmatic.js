@@ -102,6 +102,9 @@ class Radarmatic {
     $("#color_slider").on("input", this.render.bind(this));
     $("#tdwr_checkbox").on("change", this.find_nearest_radar.bind(this));
     $("#lock_checkbox").on("change", this.find_nearest_radar.bind(this));
+    if (this.sites[this.current_site].tdwr) {
+      $("#tdwr_checkbox").prop("checked", true);
+    }
   }
 
   find_nearest_radar() {
