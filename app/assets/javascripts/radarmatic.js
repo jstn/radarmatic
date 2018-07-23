@@ -38,6 +38,7 @@ class Radarmatic {
 
   create_map() {
     this.map = new L.Map("radarmatic_map", {
+      scrollWheelZoom: false,
       center: this.sites[this.current_site].loc,
       zoom: 7
     });
@@ -99,7 +100,7 @@ class Radarmatic {
       $(this.renderer.domElement).css("opacity", $("#opacity_slider").val());
     });
     $("#color_slider").on("input", this.render.bind(this));
-    $("#spin_slider").on("input", this.render.bind(this));
+    $("#tdwr_checkbox").on("change", this.find_nearest_radar.bind(this));
     $("#lock_checkbox").on("change", this.find_nearest_radar.bind(this));
   }
 
@@ -111,6 +112,14 @@ class Radarmatic {
     let distance = 99999999;
 
     for (let call_sign in this.sites) {
+      if (this.sites[call_sign].tdwr) {
+        if (!$("#tdwr_checkbox").prop("checked")) {
+          continue;
+        }
+      } else if ($("#tdwr_checkbox").prop("checked")) {
+        continue;
+      }
+
       const loc = this.sites[call_sign].loc;
       const site_dist = this.map_center.distanceTo(loc);
       if (site_dist < distance) {
