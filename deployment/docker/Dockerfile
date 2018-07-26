@@ -13,7 +13,7 @@ RUN curl -sSL https://deb.nodesource.com/setup_9.x | bash -
 RUN curl -sSL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get -y update && apt-get -y install nodejs yarn
-RUN bash -lc "rvm --default use ruby-2.4.4 && gem install bundler"
+RUN bash -lc "rvm --default use ruby-2.5.1 && gem install bundler"
 
 ADD radarmatic /home/app/radarmatic
 RUN chown -R app:app /home/app/radarmatic
