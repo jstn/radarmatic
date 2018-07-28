@@ -2,6 +2,9 @@
   "name": "radarmatic",
   "private": true,
   "dependencies": {
+    "leaflet": "^1.3.3",
+    "three": "^0.94.0",
+    "zepto": "^1.2.0"
   },
   "version": "1.0.0",
   "main": "index.js",

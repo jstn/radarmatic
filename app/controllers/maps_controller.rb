@@ -15,7 +15,5 @@ class MapsController < ApplicationController
     end
 
     expires_in(1.hour, must_revalidate: true, public: true)
-
-    render layout: "map"
   end
 end

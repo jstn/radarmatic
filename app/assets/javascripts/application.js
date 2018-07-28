@@ -10,6 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require zepto/dist/zepto.js
+//= require leaflet/dist/leaflet-src.js
+//= require three/build/three.js
 //= require tile.stamen.js
 //= require radarmatic.js
 //= require_self
