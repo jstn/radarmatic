@@ -2,9 +2,7 @@
 
 ### New and improved.
 
-### Open a terminal:
-
-    git clone git@github.com:jstn/radarmatic.git
+    git clone https://github.com/jstn/radarmatic.git --depth 1
     cd radarmatic
     bin/bundle install
     bin/yarn install
