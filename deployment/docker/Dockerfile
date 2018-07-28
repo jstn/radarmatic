@@ -1,31 +1,30 @@
-FROM phusion/passenger-full:0.9.34
-
-EXPOSE 80
+FROM ruby:2.5.1
 
 ENV RAILS_ENV "production"
-ENV HOME "/root"
-ENV TZ "Etc/UTC"
+ENV RAILS_LOG_TO_STDOUT "true"
+ENV RAILS_SERVE_STATIC_FILES "true"
 
-RUN echo $TZ | tee /etc/timezone
-RUN rm /etc/localtime && ln -s /usr/share/zoneinfo/$TZ /etc/localtime
+ARG DEBIAN_FRONTEND="noninteractive"
+ARG APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE="true"
 
+RUN apt-get -y update && apt-get -y install apt-utils apt-transport-https --no-install-recommends
 RUN curl -sSL https://deb.nodesource.com/setup_9.x | bash -
 RUN curl -sSL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get -y update && apt-get -y install nodejs yarn
-RUN bash -lc "rvm --default use ruby-2.5.1 && gem install bundler"
+RUN apt-get -y update && apt-get -y install nodejs yarn --no-install-recommends
 
-ADD radarmatic /home/app/radarmatic
-RUN chown -R app:app /home/app/radarmatic
+ADD radarmatic /app
+WORKDIR /app
 
-WORKDIR /home/app/radarmatic
-RUN su app -c "bin/bundle config git.allow_insecure true && bin/bundle install --without=development test"
-RUN su app -c "bin/yarn install && bin/rails assets:precompile"
-RUN su app -c "bin/rails db:create && bin/rails db:migrate && bin/rails db:seed"
-
-ADD site-default.conf /etc/nginx/sites-available/default
-RUN rm -f /etc/service/nginx/down
+RUN bin/bundle config --local build.nokogiri "--use-system-libraries" && \
+    bin/bundle config --local deployment 1 && \
+    bin/bundle install --jobs 4 --retry 3 --clean --without=development:test
+RUN bin/yarn install
+RUN bin/rails assets:precompile
+RUN bin/rails db:setup
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-CMD ["/sbin/my_init"]
+EXPOSE 80
+
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]

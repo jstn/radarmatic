@@ -11,8 +11,8 @@ main () (
 
   cd docker || exit 1
   sudo rm -rf radarmatic
-  git clone -b "$BRANCH" git@github.com:jstn/radarmatic.git --depth 1
-  rm -rf radarmatic/.git
+  git clone -b "$BRANCH" git@github.com:jstn/radarmatic.git radarmatic --depth 1
+  rm -rf radarmatic/.git*
   sudo docker build -t jstn/radarmatic-"$BRANCH" .
   rm -rf radarmatic
 )

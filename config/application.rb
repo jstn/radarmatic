@@ -1,6 +1,17 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails"
+# Pick the frameworks you want:
+require "active_model/railtie"
+require "active_job/railtie"
+require "active_record/railtie"
+# require "active_storage/engine"
+require "action_controller/railtie"
+# require "action_mailer/railtie"
+require "action_view/railtie"
+# require "action_cable/engine"
+require "sprockets/railtie"
+# require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -19,5 +30,13 @@ module Radarmatic
     config.time_zone = "UTC"
     config.active_record.default_timezone = :utc
     config.base_radar_url = "http://tgftp.nws.noaa.gov/SL.us008001/DF.of/DC.radar"
+
+    config.action_controller.perform_caching = true
+    config.cache_store = ActiveSupport::Cache::MemoryStore.new(size: 512.megabytes)
+    config.public_file_server.headers = {
+      "Cache-Control" => "public, max-age=#{1.year.to_i}",
+      "Expires" => "#{1.year.from_now.httpdate}",
+      "X-Warning" => "HC SVNT DRACONES"
+    }
   end
 end

@@ -7,17 +7,12 @@ main () (
     exit 1
   fi
 
-  BRANCH="$1"
-  IP="172.31.3.224"
-  PORT="80"
-
   sudo docker run \
     --name radarmatic \
-    --hostname radarmatic.com \
-    --publish "$IP":"$PORT":80 \
+    --publish 80:3000 \
     --restart always \
     --detach \
-    jstn/radarmatic-"$BRANCH"
+    jstn/radarmatic-"$1"
 )
 
 main "$@"
