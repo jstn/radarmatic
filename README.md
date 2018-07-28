@@ -1,9 +1,11 @@
 # Radarmatic
 
-## New and improved.
+### New and improved.
 
-### Local installation:
+### Open a terminal:
 
-    bundle install
-    rails db:setup
-    rails server
+    git clone git@github.com:jstn/radarmatic.git
+    cd radarmatic
+    bin/bundle install
+    bin/rails db:setup
+    bin/rails server
