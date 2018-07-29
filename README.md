@@ -1,12 +1,10 @@
-# Radarmatic
-
-### New and improved.
-
-[radarmatic.com](http://radarmatic.com/)
+# Radarmatic II
 
 Requires: Ruby, Yarn, Git, Docker (optional).
 
-Local installation:
+[radarmatic.com](http://radarmatic.com/)
+
+### Installation
 
     git clone https://github.com/jstn/radarmatic.git --depth 1
     cd radarmatic
@@ -17,7 +15,7 @@ Local installation:
     bin/rails db:seed
     bin/rails server
 
-Docker deployment:
+### Deployment
 
     git clone https://github.com/jstn/radarmatic.git --depth 1
     cd radarmatic/deployment
