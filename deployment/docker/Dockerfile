@@ -18,7 +18,7 @@ RUN apt-get -y update && apt-get -y install apt-utils apt-transport-https --no-i
     bin/bundle config --local build.nokogiri "--use-system-libraries" && \
     bin/bundle config --local deployment 1 && \
     bin/bundle install --jobs 4 --retry 3 --clean --without=development:test && \
-    bin/yarn install && \
+    bin/rails yarn:install && \
     bin/rails assets:precompile && \
     bin/rails db:setup && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

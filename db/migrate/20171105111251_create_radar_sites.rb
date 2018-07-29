@@ -7,6 +7,7 @@ class CreateRadarSites < ActiveRecord::Migration[5.2]
       t.float :longitude
       t.integer :elevation
       t.boolean :tdwr, default: false, null: false
+      t.timestamps
     end
 
     add_index :radar_sites, :call_sign, unique: true

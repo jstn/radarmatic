@@ -56,8 +56,8 @@ class Radarmatic {
       }
     }
 
-    this.map.addLayer(this.map_layers["Toner"]);
-    L.control.layers(this.map_layers).addTo(this.map);
+    this.map.addLayer(this.map_layers["Toner Lite"]);
+    // L.control.layers(this.map_layers).addTo(this.map);
 
     for (const evnt of ["load", "move", "zoom", "resize", "viewreset"]) {
       this.map.on(evnt, this.render.bind(this));

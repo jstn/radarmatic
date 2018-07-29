@@ -16,21 +16,21 @@ class RadarImage < ApplicationRecord
   end
 
   def fresh?
-    age <= MAX_AGE
+    data.present? && age <= MAX_AGE
   end
 
   def cached_data
-    if fresh?
-      if Rails.cache.exist?(cache_key)
-        Rails.cache.read(cache_key)
-      elsif data.present?
-        Rails.cache.write(cache_key, data)
-        data
-      else
-        download_data
-      end
-    else
+    data_cache_key = "#{cache_key}/data"
+
+    unless fresh?
       download_data
+      if data.present?
+        Rails.cache.write(data_cache_key, data)
+      end
+    end
+
+    Rails.cache.fetch(data_cache_key) do
+      data
     end
   end
 
@@ -44,14 +44,9 @@ class RadarImage < ApplicationRecord
       return nil unless (response.code.to_i == 200 && response.body.length > 0)
 
       parser = RadarImageParser.new(response.body, radar_site.call_sign)
-
       if json = parser.data.to_json
-        Rails.cache.write(cache_key, json)
         self.data = json
         save
-        json
-      else
-        nil
       end
     end
 end
