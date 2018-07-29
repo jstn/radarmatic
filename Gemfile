@@ -3,13 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.5.1"
 
-gem "rails", "~> 5.2.0"
-gem "sassc-rails", "~> 1.3.0"
-gem "uglifier", ">= 1.3.0"
-gem "sqlite3", ">= 1.3.13"
-gem "puma", "~> 3.11"
-gem "slim", "~> 3.0.9"
-gem "rbzip2", "~> 0.3.0"
+gem "rails", "~> 5.2"
+gem "sassc-rails", "~> 1.3"
+gem "uglifier", "~> 4.1"
+gem "sqlite3", ">= 1.3"
+gem "puma", "~> 3"
+gem "slim", "~> 3.0"
+gem "rbzip2", "~> 0.3"
 gem "bootsnap", ">= 1.1.0", require: false
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
