@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2017_11_05_111254) do
     t.float "longitude"
     t.integer "elevation"
     t.boolean "tdwr", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["call_sign"], name: "index_radar_sites_on_call_sign", unique: true
   end
 

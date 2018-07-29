@@ -1,5 +1,5 @@
 #radarmatic_ui
-  h1 🌈 Radarmatic II &lt;β.7&gt;
+  h1 🌈 Radarmatic II &lt;β.8&gt;
   div#radar_name Loading&hellip;
   div#radar_time 0000-00-00 00:00:00
   div
@@ -21,7 +21,7 @@ script#vertex_shader type="x-shader/x-vertex"
   | void main() { gl_Position = vec4(position, 1.); }
 
 script#fragment_shader type="x-shader/x-fragment"
-  = render partial: "shader.frag"
+  = render(partial: "shader.frag")
 
 script#radarmatic_sites type="text/javascript"
-  = "var RadarmaticSites = #{@radar_sites_json}".html_safe
+  = "const RadarmaticSites = #{@radar_sites_json}".html_safe
