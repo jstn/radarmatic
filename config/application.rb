@@ -29,6 +29,7 @@ module Radarmatic
 
     config.time_zone = "UTC"
     config.active_record.default_timezone = :utc
+    config.active_record.sqlite3.represent_boolean_as_integer = true
     config.base_radar_url = "http://tgftp.nws.noaa.gov/SL.us008001/DF.of/DC.radar"
 
     config.action_controller.perform_caching = true
