@@ -33,7 +33,7 @@ module Radarmatic
     config.base_radar_url = "http://tgftp.nws.noaa.gov/SL.us008001/DF.of/DC.radar"
 
     config.action_controller.perform_caching = true
-    config.cache_store = ActiveSupport::Cache::MemoryStore.new(size: 512.megabytes)
+    config.cache_store = ActiveSupport::Cache::MemoryStore.new(size: 128.megabytes)
     config.public_file_server.headers = {
       "Cache-Control" => "public, max-age=#{1.year.to_i}",
       "Expires" => "#{1.year.from_now.httpdate}",
