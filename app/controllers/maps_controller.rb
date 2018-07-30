@@ -1,9 +1,12 @@
 class MapsController < ApplicationController
   def map
     @radar_sites = RadarSite.order(call_sign: :asc)
-    json_cache_key = "#{@radar_sites.cache_key}/json"
+    unless @radar_sites.present?
+      head 500
+      return
+    end
 
-    @radar_sites_json = Rails.cache.fetch(json_cache_key) do
+    @radar_sites_json = Rails.cache.fetch(@radar_sites.cache_key) do
       sites = Hash.new
       @radar_sites.each do |site|
         sites[site["call_sign"].to_sym] = {
