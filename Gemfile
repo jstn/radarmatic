@@ -10,6 +10,7 @@ gem "sqlite3", "~> 1.3"
 gem "puma", "~> 3"
 gem "slim", "~> 3.0"
 gem "rbzip2", "~> 0.3"
+gem "dalli", "~> 2.7"
 gem "bootsnap", ">= 1.1.0", require: false
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
