@@ -2,8 +2,8 @@
 set -e
 
 main () (
-  sudo docker stop radarmatic
-  sudo docker rm radarmatic
+  cd docker || exit 1
+  sudo docker-compose down
 )
 
 main "$@"
