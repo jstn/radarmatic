@@ -3,7 +3,7 @@ set -e
 
 main () (
   cd docker || exit 1
-  sudo docker-compose up --detach
+  sudo /usr/local/bin/docker-compose up --detach
 )
 
 main "$@"

@@ -3,7 +3,7 @@ set -e
 
 main () (
   cd docker || exit 1
-  sudo docker-compose down
+  sudo /usr/local/bin/docker-compose down
 )
 
 main "$@"
