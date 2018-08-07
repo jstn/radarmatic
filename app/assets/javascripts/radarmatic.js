@@ -15,12 +15,22 @@ class Radarmatic {
     this.time = (new Date).getTime();
     this.product_nexrad = "N0Q";
     this.product_tdwr = "TZL";
-    this.current_site = this.storage_or_default("current_site", "KDIX");
     this.create_sites();
+    this.set_initial_site();
     this.create_map();
     this.create_gl();
     this.create_ui();
     this.get_image(this.current_site);
+  }
+
+  set_initial_site() {
+    const search = window.location.search.substring(1,5);
+    if (this.sites[search]) {
+      this.current_site = search;
+      window.history.pushState({}, document.title, window.location.pathname);
+    } else {
+      this.current_site = this.storage_or_default("current_site", "KDIX");
+    }
   }
 
   create_sites() {
