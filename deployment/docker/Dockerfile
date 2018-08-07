@@ -23,6 +23,6 @@ RUN apt-get -y update && apt-get -y install apt-utils apt-transport-https --no-i
     bin/rails db:setup && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-EXPOSE 80
+EXPOSE 3000
 
 CMD ["bin/rails", "server"]
