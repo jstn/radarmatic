@@ -4,7 +4,7 @@ set -e
 main () (
   sudo docker run \
     --name radarmatic \
-    --publish 172.31.83.116:3000:3000 \
+    --publish 127.0.0.1:3000:3000 \
     --restart always \
     --detach \
     jstn/radarmatic
