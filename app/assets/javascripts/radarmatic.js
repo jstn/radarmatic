@@ -27,7 +27,7 @@ class Radarmatic {
     const search = window.location.search.substring(1,5);
     if (this.sites[search]) {
       this.current_site = search;
-      window.history.pushState({}, document.title, window.location.pathname);
+      window.history.replaceState(null, null, window.location.pathname);
     } else {
       this.current_site = this.storage_or_default("current_site", "KDIX");
     }
