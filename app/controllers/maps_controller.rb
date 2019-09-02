@@ -20,6 +20,6 @@ class MapsController < ApplicationController
       JSON.generate(sites)
     end
 
-    expires_in(1.year, public: true)
+    expires_in(1.year, public: true, must_revalidate:true)
   end
 end

@@ -19,19 +19,13 @@ Bundler.require(*Rails.groups)
 
 module Radarmatic
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
+    ENV["RAILS_CACHE_ID"] = File.read(Rails.root.join("public", "version.txt")).strip
+
     config.load_defaults 5.2
-
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
-
     config.time_zone = "UTC"
     config.active_record.default_timezone = :utc
     config.active_record.sqlite3.represent_boolean_as_integer = true
     config.base_radar_url = "http://tgftp.nws.noaa.gov/SL.us008001/DF.of/DC.radar"
-
     config.cache_store = ActiveSupport::Cache::MemoryStore.new(size: 16.megabytes)
     config.action_controller.perform_caching = true
     config.public_file_server.headers = {

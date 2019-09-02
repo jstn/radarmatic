@@ -23,7 +23,7 @@ class RadarImagesController < ApplicationController
     end
 
     time_remaining = @radar_image.time_remaining
-    expires_in(time_remaining, public: true)
+    expires_in(time_remaining, public: true, must_revalidate: true)
 
     if time_remaining.to_i <= 0 || stale?(@radar_image)
       if data = @radar_image.cached_data
