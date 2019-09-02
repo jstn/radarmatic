@@ -22,10 +22,9 @@ module Radarmatic
     ENV["RAILS_CACHE_ID"] = File.read(Rails.root.join("public", "version.txt")).strip
 
     config.load_defaults 5.2
-    config.time_zone = "UTC"
-    config.active_record.default_timezone = :utc
+    config.middleware.use Rack::Deflater
     config.active_record.sqlite3.represent_boolean_as_integer = true
-    config.base_radar_url = "http://tgftp.nws.noaa.gov/SL.us008001/DF.of/DC.radar"
+    config.base_radar_url = "https://tgftp.nws.noaa.gov/SL.us008001/DF.of/DC.radar"
     config.cache_store = ActiveSupport::Cache::MemoryStore.new(size: 16.megabytes)
     config.action_controller.perform_caching = true
     config.public_file_server.headers = {
